@@ -2,11 +2,41 @@
 
 Create an elevator controller!
 
+## Frontend
+
+You will need to create a NPM/Yarn project in a frontend directory. Initially it's almost empty. You can choose framework and design project structure as you want. Our current priorieties are React Native and React (in that order) with TypeScript, however you are free to use other libraries if it suits you better.
+
+### Build And Run (as is)
+
+Installing dependencies:
+
+    yarn install
+
+Running app:
+
+    yarn start
+
+## Backend
+
 This is a skeleton project with two interfaces that you must implement.
 
 You are going to create an Elevator Controller and a number of Elevators that will be managed by the controller. There are a few extra classes already added to the project to get you up and running quickly.
 
-## To Do
+### Build And Run (as is)
+
+As the project is, the Spring app can be started as seen below.
+
+build and run the code with Maven
+
+    mvn package
+    mvn spring-boot:run
+
+or start the target JAR file 
+
+    mvn package
+    java -jar target/elevator-1.0-SNAPSHOT.jar
+
+### To Do
 
 There are two interfaces to implement.
 
@@ -34,21 +64,7 @@ Document how we start, simulate and monitor your solution. If there is a GUI or 
 
 Have fun! This is not a trap. It is a code challenge to check coding style etc. If there are features you don't have time to add or if you have future changes in mind, write comments or document them.
 
-### Deliver Your Solution
+## Deliver Your Solution
 
-Add the code to a github or bitbucket repository. You can also make an archive of the project and e-mail it to us. We would like to see your solution within 7 days.
- 
-## Build And Run (as is)
-
-As the project is, the Spring app can be started as seen below.
-
-build and run the code with Maven
-
-    mvn package
-    mvn spring-boot:run
-
-or start the target JAR file 
-
-    mvn package
-    java -jar target/elevator-1.0-SNAPSHOT.jar
+Add the code to a github, gitlab or bitbucket repository. You can also make an archive of the project and e-mail it to us. We would like to see your solution within 7 days.
 

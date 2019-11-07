@@ -1,4 +1,4 @@
-package com.tingco.codechallenge.elevator.api;
+package com.fortum.codechallenge.elevators.backend.api;
 
 /**
  * Interface for an elevator object.
@@ -6,7 +6,7 @@ package com.tingco.codechallenge.elevator.api;
  * @author Sven Wesley
  *
  */
-interface Elevator {
+public interface Elevator {
 
     /**
      * Enumeration for describing elevator's direction.

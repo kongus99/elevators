@@ -1,0 +1,14 @@
+{
+  "name": "elevators-frontend",
+  "version": "1.0.0",
+  "description": "Fortum coding challenge - frontend part",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc && node build/dist/index.js"
+  },
+  "dependencies": {
+    "typescript": "^3.7.2"
+  }
+}

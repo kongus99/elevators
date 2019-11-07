@@ -1,4 +1,4 @@
-package com.tingco.codechallenge.elevator.api;
+package com.fortum.codechallenge.elevators.backend.api;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import java.util.List;
  * @author Sven Wesley
  *
  */
-interface ElevatorController {
+public interface ElevatorController {
 
     /**
      * Request an elevator to the specified floor.

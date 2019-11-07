@@ -1,14 +1,13 @@
-package com.tingco.codechallenge.elevator.config;
+package com.fortum.codechallenge.elevators.backend;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 
@@ -17,15 +16,12 @@ import com.google.common.eventbus.EventBus;
 
 /**
  * Preconfigured Spring Application boot class.
- *
  */
-@Configuration
-@ComponentScan(basePackages = { "com.tingco.codechallenge.elevator" })
-@EnableAutoConfiguration
+@SpringBootApplication
 @PropertySources({ @PropertySource("classpath:application.properties") })
 public class ElevatorApplication {
 
-    @Value("${com.tingco.elevator.numberofelevators}")
+    @Value("${com.fortum.codechallenge.numberOfElevators}")
     private int numberOfElevators;
 
     /**

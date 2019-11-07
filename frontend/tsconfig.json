@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "outDir": "build/dist",
+    "target": "es6",
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "rootDir": "src",
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true
+  },
+  "exclude": ["node_modules", "build"]
+}
