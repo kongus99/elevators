@@ -34,7 +34,7 @@ build and run the code with Maven
 or start the target JAR file 
 
     mvn package
-    java -jar target/elevator-1.0-SNAPSHOT.jar
+    java -jar target/elevators-backend-0.0.1-SNAPSHOT.jar
 
 ### To Do
 
