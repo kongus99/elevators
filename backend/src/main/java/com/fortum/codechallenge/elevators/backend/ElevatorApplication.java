@@ -1,24 +1,22 @@
 package com.fortum.codechallenge.elevators.backend;
 
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-
+import com.google.common.eventbus.AsyncEventBus;
+import com.google.common.eventbus.EventBus;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 
-import com.google.common.eventbus.AsyncEventBus;
-import com.google.common.eventbus.EventBus;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 /**
  * Preconfigured Spring Application boot class.
  */
 @SpringBootApplication
-@PropertySources({ @PropertySource("classpath:application.properties") })
+@PropertySources({@PropertySource("classpath:application.properties")})
 public class ElevatorApplication {
 
     @Value("${com.fortum.codechallenge.numberOfElevators}")
@@ -27,8 +25,7 @@ public class ElevatorApplication {
     /**
      * Start method that will be invoked when starting the Spring context.
      *
-     * @param args
-     *            Not in use
+     * @param args command line arguments
      */
     public static void main(final String[] args) {
         SpringApplication.run(ElevatorApplication.class, args);

@@ -2,9 +2,6 @@ package com.fortum.codechallenge.elevators.backend.api;
 
 /**
  * Interface for an elevator object.
- *
- * @author Sven Wesley
- *
  */
 public interface Elevator {
 
@@ -39,8 +36,7 @@ public interface Elevator {
     /**
      * Command to move the elevator to the given floor.
      *
-     * @param toFloor
-     *            int where to go.
+     * @param toFloor int where to go.
      */
     void moveElevator(int toFloor);
 

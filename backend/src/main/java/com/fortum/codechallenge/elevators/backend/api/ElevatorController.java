@@ -5,17 +5,13 @@ import java.util.List;
 
 /**
  * Interface for the Elevator Controller.
- *
- * @author Sven Wesley
- *
  */
 public interface ElevatorController {
 
     /**
      * Request an elevator to the specified floor.
      *
-     * @param toFloor
-     *            addressed floor as integer.
+     * @param toFloor addressed floor as integer.
      * @return The Elevator that is going to the floor, if there is one to move.
      */
     Elevator requestElevator(int toFloor);
@@ -31,8 +27,7 @@ public interface ElevatorController {
      * Telling the controller that the given elevator is free for new
      * operations.
      *
-     * @param elevator
-     *            the elevator that shall be released.
+     * @param elevator the elevator that shall be released.
      */
     void releaseElevator(Elevator elevator);
 
