@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -17,6 +18,7 @@ import java.util.concurrent.Executors;
  */
 @SpringBootApplication
 @PropertySources({@PropertySource("classpath:application.properties")})
+@EnableScheduling
 public class ElevatorApplication {
 
     @Value("${com.fortum.codechallenge.numberOfElevators}")

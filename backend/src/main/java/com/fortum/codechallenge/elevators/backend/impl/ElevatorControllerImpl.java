@@ -5,10 +5,12 @@ import com.fortum.codechallenge.elevators.backend.api.ElevatorController;
 import com.fortum.codechallenge.elevators.backend.api.ElevatorState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.IntStream;
 
 import static com.fortum.codechallenge.elevators.backend.api.Elevator.Direction.NONE;
@@ -17,11 +19,12 @@ import static java.util.stream.Collectors.toList;
 @Service
 public class ElevatorControllerImpl implements ElevatorController {
 
+    private static final int STEP = 2000;
     private final List<Elevator> elevators;
     private final Map<Integer, ElevatorState> states;
 
     @Autowired
-    public ElevatorControllerImpl(@Value("") int elevatorCount) {
+    public ElevatorControllerImpl(@Value("${com.fortum.codechallenge.numberOfElevators}") int elevatorCount) {
         this(IntStream.range(0, elevatorCount).mapToObj(i -> new ElevatorImpl(i, 10)).collect(toList()));
     }
 
@@ -35,11 +38,7 @@ public class ElevatorControllerImpl implements ElevatorController {
     public void callElevator(int floor) {
         elevators.stream()
                 .min(Comparator.comparing(e -> e.costOfStopping(floor)))
-                .ifPresent(stop(floor));
-    }
-
-    private synchronized Consumer<Elevator> stop(int floor) {
-        return e -> Optional.ofNullable(e.scheduleStop(floor)).ifPresent(s -> states.put(s.id, s));
+                .ifPresent(perform(e -> e.scheduleStop(floor)));
     }
 
     @Override
@@ -47,12 +46,21 @@ public class ElevatorControllerImpl implements ElevatorController {
         elevators.stream()
                 .filter(e -> e.getId() == elevatorId)
                 .findFirst()
-                .ifPresent(stop(floor));
+                .ifPresent(perform(e -> e.scheduleStop(floor)));
     }
 
     @Override
     public List<ElevatorState> currentState() {
         return new ArrayList<>(states.values());
+    }
+
+    @Scheduled(fixedRate = STEP)
+    private void reportCurrentTime() {
+        elevators.forEach(perform(Elevator::advanceTime));
+    }
+
+    private synchronized Consumer<Elevator> perform(Function<Elevator, ElevatorState> f) {
+        return e -> Optional.ofNullable(f.apply(e)).ifPresent(s -> states.put(s.id, s));
     }
 
 }
