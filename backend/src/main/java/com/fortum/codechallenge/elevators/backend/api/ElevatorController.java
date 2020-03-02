@@ -1,7 +1,5 @@
 package com.fortum.codechallenge.elevators.backend.api;
 
-import com.fortum.codechallenge.elevators.backend.api.Elevator.Direction;
-
 import java.util.List;
 
 
@@ -10,10 +8,26 @@ import java.util.List;
  */
 public interface ElevatorController {
 
-    void requestElevator(int floor);
+    /**
+     * Request an elevator to the specified floor, from outside of an elevator.
+     *
+     * @param floor floor from which the request was issued.
+     */
+    void callElevator(int floor);
 
-    void goToFloor(int floor);
+    /**
+     * Orders the specific elevator to ride to specific floor, from inside of an elevator
+     *
+     * @param floor floor on which the elevator should stop.
+     * @param elevatorId id of the elevator from which the request was issued.
+     */
+    void rideElevator(int floor, int elevatorId);
 
+    /**
+     * Probes the controller for the current states of the elevators
+     *
+     * @return list of elevator states, sorted by id
+     */
     List<ElevatorState> currentState();
 
 }
