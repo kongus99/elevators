@@ -32,6 +32,7 @@ let make = () => {
 
   <Container fluid=true>
     <Row>
+      <Col lg="2"> <Floors /> </Col>
       {state
        |> Array.map(s => <Col lg="2"> <Elevator state=s /> </Col>)
        |> React.array}

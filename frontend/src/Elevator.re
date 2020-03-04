@@ -14,8 +14,6 @@ type state = {
   stops: IntSet.t,
 };
 
-let maxFloors = 10;
-
 let defaultState = {id: 1, floor: 0, direction: NONE, stops: IntSet.empty};
 
 let toDirection = d =>
@@ -33,14 +31,9 @@ let decode = json =>
     stops: json |> field("stops", array(int) |> map(IntSet.fromArray)),
   };
 
-let callFloor = (id, floor, _event) => {
+let rideFloor = (id, floor, _event) => {
   Js.Promise.(
-    fetch(
-      "http://localhost:8080/rest/v1/ride?elevatorId="
-      ++ string_of_int(id)
-      ++ "&floor="
-      ++ string_of_int(floor),
-    )
+    fetch(Constants.rideUrl(id, floor))
     |> then_(_response => {Js.Promise.resolve()})
     |> catch(_err => {Js.Promise.resolve()})
     |> ignore
@@ -52,15 +45,15 @@ let make = (~state=defaultState) => {
   <>
     <ProgressBar
       min=0
-      max={maxFloors - 1}
+      max={Constants.maxFloors - 1}
       now={state.floor}
       animated={state.direction != NONE}
       label={string_of_int(state.floor)}
     />
     <Keypad
       stops={state.stops}
-      floors=maxFloors
-      onButtonPress={callFloor(state.id)}
+      floors=Constants.maxFloors
+      onButtonPress={rideFloor(state.id)}
     />
   </>;
 };
