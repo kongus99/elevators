@@ -1,26 +1,28 @@
-# Elevator Coding Challenge
+# Elevator
 
-Create an elevator controller!
+This repository contains the basic elevator simutation with floor and elevator controls.
 
 ## Frontend
 
-You will need to create a NPM/Yarn project in a frontend directory. Initially it's almost empty. You can choose framework and design project structure as you want. Our current priorieties are React Native and React (in that order) with TypeScript, however you are free to use other libraries if it suits you better.
+The frontend is placed in the frontend directory of the project. It is written using in React using ReasonML. There are still some remains of the TS files, but they are not active. The production version still needs setting up, and the dev server runs on localhost:8000. There are no tests, but most of the react stuff can be tested using Jest or its equivalent.
 
 ### Build And Run (as is)
 
 Installing dependencies:
 
     yarn install
+    
+Compiling:
 
-Running app:
+    yarn build    
 
-    yarn start
+Running app server:
+
+    yarn server
 
 ## Backend
 
-This is a skeleton project with two interfaces that you must implement.
-
-You are going to create an Elevator Controller and a number of Elevators that will be managed by the controller. There are a few extra classes already added to the project to get you up and running quickly.
+The backend is placed in the backend directory. The default port on which it runs is 8080. It needs to run on the same host as frontend in order for the frontend to work.
 
 ### Build And Run (as is)
 
@@ -36,35 +38,13 @@ or start the target JAR file
     mvn package
     java -jar target/elevators-backend-0.0.1-SNAPSHOT.jar
 
-### To Do
+## Specification
 
-There are two interfaces to implement.
+The soulution is based on the premise of "as realistic as possible" elevator simulator. The elevators run up and down. The elevator does not change direction until it reaches it final stop in its current direction. Multiple stops per elevator can be added, even when elevator is running. The elevator runs a single time unit between the floors and adds extra time unit for each stop. It cannot stop on the floor it is currently passing, if that stop was entered during that passage. If called from outside, the least costly elevator is called. If there are multiple elevators with the same cost, the one with the lowest id is used. If there is an elevator on the calling floor, no elevator is called.
+### Solution
+In order to accomodate these requirements the ElevatorController was adjusted. It now supports 3 methods: call, ride and state.
+First one is used from outside of the elevator to call it to specific floor. Second is used from the inside of the elevator to ride it to specified floor. Last one casts the elevator down to its state and is used to feed the information to the frontend. The solution is still incomplete, since I assumed that the floors controls can affect the elevator. In reality, calling the elevator from outside sets up an interrupt on the specified floor and stops the elevator if it passes that floor. Since it would take too long to make it this way, I simplified this a bit. This can result in non-optimal elevator calls since the cost function is static and the elevator system is dynamic, with users constantly adjusting the cost function.
+### Tests
+I have written Elevator and ElevatorController using TDD, but since it was taking too much of my time I skipped the rest of the backend tests. In the frontend there are currently no tests, but most of the modules there can be tested using Jest and/or Selenium.
 
- * `Elevator` - this is the elevator itself and has a few public methods to take care of. There can be n number of elevators at the same time
-
- * `ElevatorController` - this is the elevator manager that keeps track of all the elevators running in the elevator shaft. There should be only one ElevatorController
-
-### Bonus Classes
-
-There are a few classes added to get you faster up and running. It is not mandatory to use these classes in your solution but you can use them to cut time in boiler plate coding.
-
- * `ElevatorControllerEndPoints` for REST features. If you would like to use them in a test or to support a GUI here is already a basic skeleton class for you
-
- * `ElevatorApplication` class for starting the Spring container and there are a few beans you can use as well
-
- * There are two test classes added to get you up and running faster with tests and simulations
-
-## What We Expect
-
-Implement the elevator system and make it as real as possible when it comes to the logic. Which elevator is best suited for a waiting floor, more requests than available elevators and so on.
-
-Write a test or a simulation that runs the system with a number of floors and elevators. The numbers should be flexible and the system must work with one to many elevators.
-
-Document how we start, simulate and monitor your solution. If there is a GUI or logging for monitoring does not matter as long as you describe how it is supposed to be done.
-
-Have fun! This is not a trap. It is a code challenge to check coding style etc. If there are features you don't have time to add or if you have future changes in mind, write comments or document them.
-
-## Deliver Your Solution
-
-Add the code to a github, gitlab or bitbucket repository. You can also make an archive of the project and e-mail it to us. We would like to see your solution within 7 days.
 
