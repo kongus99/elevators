@@ -11,6 +11,7 @@ import java.util.List;
  * Rest Resource.
  */
 @RestController
+@CrossOrigin
 @RequestMapping("/rest/v1")
 public final class ElevatorControllerEndPoints {
 

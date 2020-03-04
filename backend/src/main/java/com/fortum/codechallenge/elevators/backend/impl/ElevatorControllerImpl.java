@@ -31,7 +31,7 @@ public class ElevatorControllerImpl implements ElevatorController {
     public ElevatorControllerImpl(List<Elevator> elevators) {
         this.elevators = new ArrayList<>(elevators);
         this.states = new TreeMap<>();
-        elevators.forEach(e -> states.put(e.getId(), new ElevatorState(e.getId(), 0, NONE)));
+        elevators.forEach(e -> states.put(e.getId(), new ElevatorState(e.getId(), 0, NONE, List.of())));
     }
 
     @Override

@@ -88,7 +88,7 @@ public class ElevatorImpl implements Elevator {
         destination.add(onFloor);
         if(currentDirection == NONE)
             currentDirection = nextDirection();
-        return new ElevatorState(id, currentFloor, currentDirection);
+        return new ElevatorState(id, currentFloor, currentDirection, destination);
     }
 
     @Override
@@ -102,6 +102,6 @@ public class ElevatorImpl implements Elevator {
         currentDirection = nextDirection();
         if (!stop)
             currentFloor = nextFloor();
-        return new ElevatorState(id, currentFloor, currentDirection);
+        return new ElevatorState(id, currentFloor, currentDirection, destination);
     }
 }

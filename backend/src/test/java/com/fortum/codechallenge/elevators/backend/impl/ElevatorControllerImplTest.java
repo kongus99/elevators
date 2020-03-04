@@ -38,7 +38,7 @@ class ElevatorControllerImplTest {
     }
 
     private ElevatorState defaultState(int id) {
-        return new ElevatorState(id, 0, NONE);
+        return new ElevatorState(id, 0, NONE, List.of());
     }
 
     @Test
@@ -81,8 +81,8 @@ class ElevatorControllerImplTest {
         when(elevator1.costOfStopping(7)).thenReturn(0);
         when(elevator2.costOfStopping(7)).thenReturn(5);
         when(elevator3.costOfStopping(7)).thenReturn(10);
-        var state1 = new ElevatorState(11, 0, UP);
-        var state3 = new ElevatorState(33, 0, UP);
+        var state1 = new ElevatorState(11, 0, UP, List.of(7));
+        var state3 = new ElevatorState(33, 0, UP, List.of(5));
         when(elevator1.scheduleStop(7)).thenReturn(state1);
         when(elevator3.scheduleStop(5)).thenReturn(state3);
         controller.callElevator(7);
