@@ -1,12 +1,4 @@
-type limits = {
-  max: int,
-  cellSize: int,
-};
-
-type layout = {
-  limits,
-  sizes: array(int),
-};
+type t = array(int);
 
 let calculate = (max, totalSize) => {
   let size =
@@ -20,15 +12,9 @@ let calculate = (max, totalSize) => {
   );
 };
 
-let init = (max, cellSize) => {
-  limits: {
-    max,
-    cellSize,
-  },
-  sizes: calculate(max, cellSize),
-};
+let init = (max, cellSize) => calculate(max, cellSize);
 
-let cellSize = (index, layout) => layout.sizes[index];
+let cellSize = (index, layout) => layout[index];
 
 let cellStartIndex = (index, layout) =>
   Array.mapi(
@@ -38,6 +24,6 @@ let cellStartIndex = (index, layout) =>
       } else {
         0;
       },
-    layout.sizes,
+    layout,
   )
   |> Array.fold_left((+), 0);
